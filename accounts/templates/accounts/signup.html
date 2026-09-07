@@ -1,0 +1,32 @@
+{% extends 'jobs/base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<style>
+    .form-card { background: white; border-radius: 18px; padding: 36px; box-shadow: 0 4px 16px rgba(167,139,250,0.14); border: 1px solid #fbe8ff; max-width: 450px; margin: 0 auto; }
+    .form-title { font-size: 24px; font-weight: 800; color: #4c1d5b; margin-bottom: 24px; text-align: center; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-weight: 700; font-size: 14px; color: #6b5a72; margin-bottom: 6px; }
+    .form-input { width: 100%; padding: 11px 14px; border: 2px solid #f3d9f9; border-radius: 12px; font-size: 14px; font-family: 'Poppins', sans-serif; }
+    .form-input:focus { outline: none; border-color: #c084fc; }
+    .submit-btn { width: 100%; background: linear-gradient(135deg, #a78bfa, #f472b6); color: white; border: none; padding: 12px 24px; border-radius: 12px; font-weight: 700; font-size: 15px; cursor: pointer; }
+    .submit-btn:hover { opacity: 0.9; }
+    .switch-link { text-align: center; margin-top: 16px; font-size: 14px; color: #9ca3af; }
+    .switch-link a { color: #c026d3; font-weight: 700; text-decoration: none; }
+    .errorlist { color: #e11d48; font-size: 13px; list-style: none; margin-bottom: 8px; }
+</style>
+<div class="form-card">
+    <div class="form-title">Create Account</div>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label>{{ field.label }}</label>
+            {{ field }}
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="submit-btn">Sign Up</button>
+    </form>
+    <div class="switch-link">Already have an account? <a href="{% url 'login' %}">Login</a></div>
+</div>
+{% endblock %}

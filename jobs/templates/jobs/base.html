@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Job Portal{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #faf5ff 0%, #fdf2f8 100%);
+            color: #493746;
+            min-height: 100vh;
+        }
+        nav {
+            background: linear-gradient(135deg, #a78bfa, #f472b6);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 14px rgba(167, 139, 250, 0.25);
+        }
+        nav .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.20);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: #a08d99;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'job_list' %}" class="logo">Job Portal</a>
+        <div>
+            <a href="{% url 'job_list' %}">Home</a>
+            {% if user.is_authenticated %}
+                {% if user.role == 'employer' %}
+                    <a href="{% url 'job_create' %}">Post a Job</a>
+                    <a href="{% url 'my_jobs' %}">My Jobs</a>
+                {% elif user.role == 'seeker' %}
+                    <a href="{% url 'my_applications' %}">My Applications</a>
+                {% endif %}
+                <a href="{% url 'logout' %}">
+                    Logout ({{ user.username }})
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        &copy; 2026 Job Portal. All rights reserved.
+    </footer>
+</body>
+</html>
+

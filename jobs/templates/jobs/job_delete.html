@@ -1,0 +1,28 @@
+{% extends 'jobs/base.html' %}
+{% block title %}Delete Job{% endblock %}
+{% block content %}
+<style>
+    .confirm-card {
+        background: white; border-radius: 18px; padding: 36px;
+        box-shadow: 0 4px 16px rgba(167,139,250,0.14);
+        border: 1px solid #fbe8ff;
+        max-width: 500px; margin: 0 auto; text-align: center;
+    }
+    .confirm-title { font-size: 22px; font-weight: 800; color: #4c1d5b; margin-bottom: 12px; }
+    .confirm-text { color: #9ca3af; margin-bottom: 24px; }
+    .btn-row { display: flex; gap: 12px; justify-content: center; }
+    .btn-delete { background: #fb7185; color: white; border: none; padding: 10px 24px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 14px; }
+    .btn-cancel { background: #f3e8ff; color: #6b5a72; text-decoration: none; padding: 10px 24px; border-radius: 12px; font-weight: 700; font-size: 14px; }
+</style>
+<div class="confirm-card">
+    <div class="confirm-title">Delete "{{ job.title }}"?</div>
+    <div class="confirm-text">This action cannot be undone.</div>
+    <div class="btn-row">
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn-delete">Yes, Delete</button>
+        </form>
+        <a href="{% url 'job_detail' job.pk %}" class="btn-cancel">Cancel</a>
+    </div>
+</div>
+{% endblock %}
