@@ -37,25 +37,40 @@ The platform uses role-based access control to ensure that employers and job see
 The required Python packages and dependencies are listed in the `requirements.txt` file.
 ## Installation
 1. Clone the repository
+
 git clone https://github.com/tayyabadev11/job-portal.git
 cd job-portal
+
 2. Create and activate a virtual environment
+
 python -m venv venv
 venv\Scripts\activate
+
 3. Install the required packages
+
 pip install -r requirements.txt
+
 4. Create a `.env` file in the project root and add
+
 SECRET_KEY=your-secret-key
 DEBUG=True
 DB_NAME=db.sqlite3
+
 5. Run migrations
+
 python manage.py makemigrations
 python manage.py migrate
+
 6. Create a superuser (optional, for admin access)
+
 python manage.py createsuperuser
+
 7. Run the development server
+
 python manage.py runserver
+
 8. Open `http://127.0.0.1:8000/` in your browser
+
 ## Environment
 Project configuration and sensitive settings are managed using environment variables.
 ## Author
