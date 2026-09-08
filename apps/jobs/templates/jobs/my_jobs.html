@@ -10,7 +10,18 @@
     .job-company { color: #c026d3; font-weight: 700; margin-bottom: 12px; font-size: 14px; }
     .job-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
     .badge { background: #ffe4e6; color: #e11d48; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
-    .job-card a.btn { display: inline-block; background: linear-gradient(135deg, #a78bfa, #f472b6); color: white; text-decoration: none; padding: 10px 20px; border-radius: 10px; font-weight: 700; font-size: 14px; }
+    .job-card a.btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #a78bfa, #f472b6);
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 14px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+    }
     .job-card a.btn:hover { opacity: 0.88; }
     .empty-state { text-align: center; padding: 60px 20px; color: #9ca3af; }
     .messages { list-style: none; margin-bottom: 20px; }
@@ -32,12 +43,19 @@
     {% for job in jobs %}
     <div class="job-card">
         <h3>{{ job.title }}</h3>
-        <div class="job-company">{{ job.company }}</div>
+        <div class="job-company">
+            {{ job.company }}
+        </div>
         <div class="job-meta">
             <span class="badge">{{ job.location }}</span>
             <span class="badge">{{ job.applications.count }} applicant(s)</span>
         </div>
-        <a href="{% url 'job_detail' job.pk %}" class="btn">View Details</a>
+        <a href="{% url 'job_detail' job.pk %}" class="btn">
+            View Details
+        </a>
+        <a href="{% url 'job_applications' job.pk %}" class="btn">
+            View Applications
+        </a>
     </div>
     {% endfor %}
 </div>

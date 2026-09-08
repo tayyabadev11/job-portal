@@ -1,0 +1,33 @@
+{% extends 'jobs/base.html' %}
+{% block title %}Applications - {{ job.title }}{% endblock %}
+{% block content %}
+<h2>Applications for {{ job.title }}</h2>
+{% if applications %}
+    {% for application in applications %}
+        <div class="job-card">
+            <h3>{{ application.name }}</h3
+            <p><strong>Email:</strong> {{ application.email }}</p>
+            <p><strong>Phone:</strong> {{ application.phone }}</p>
+            <p><strong>Location:</strong> {{ application.location }}</p>
+            <p>
+                <strong>Cover Letter:</strong><br>
+                {{ application.cover_letter }}
+            </p>
+            <p>
+                <strong>Applied:</strong>
+                {{ application.applied_date }}
+            </p>
+            {% if application.resume %}
+                <a href="{{ application.resume.url }}" target="_blank">
+                    View / Download CV
+                </a>
+            {% else %}
+                <p>No CV uploaded.</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No applications received yet.</p>
+{% endif %}
+
+{% endblock %}

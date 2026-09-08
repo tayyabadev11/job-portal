@@ -26,7 +26,44 @@ class SignUpForm(UserCreationForm):
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
-        fields = ['cover_letter', 'resume']
+        fields = [
+            'name',
+            'email',
+            'phone',
+            'location',
+            'cover_letter',
+            'resume'
+        ]
         widgets = {
-            'cover_letter': forms.Textarea(attrs={'class': 'form-input', 'rows': 5, 'placeholder': 'Tell us why you are a good fit...'}),
+            'name': forms.TextInput(
+                attrs={
+                    'class': 'form-input',
+                    'placeholder': 'Enter your full name'
+                }
+            ),
+            'email': forms.EmailInput(
+                attrs={
+                    'class': 'form-input',
+                    'placeholder': 'Enter your email'
+                }
+            ),
+            'phone': forms.TextInput(
+                attrs={
+                    'class': 'form-input',
+                    'placeholder': 'Enter your phone number'
+                }
+            ),
+            'location': forms.TextInput(
+                attrs={
+                    'class': 'form-input',
+                    'placeholder': 'Enter your location'
+                }
+            ),
+            'cover_letter': forms.Textarea(
+                attrs={
+                    'class': 'form-input',
+                    'rows': 5,
+                    'placeholder': 'Tell us why you are a good fit...'
+                }
+            ),
         }

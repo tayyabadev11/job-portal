@@ -93,3 +93,14 @@ def my_applications(request):
         return redirect('job_list')
     applications = Application.objects.filter(applicant=request.user).order_by('-applied_date')
     return render(request, 'jobs/my_applications.html', {'applications': applications})
+@login_required
+def job_applications(request, pk):
+    job = get_object_or_404(Job, pk=pk)
+    if request.user != job.posted_by:
+        messages.error(request, "You can only view applications for your own jobs.")
+        return redirect('my_jobs')
+    applications = Application.objects.filter(job=job).order_by('-applied_date')
+    return render(request, 'jobs/job_applications.html', {
+        'job': job,
+        'applications': applications
+    })
